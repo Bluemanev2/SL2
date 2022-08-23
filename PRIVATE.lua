@@ -83,22 +83,25 @@ end
 
 --// Function E
 function E()
+function getplrsname()
     while task.wait() do 
         if getgenv().settings.E == true then 
-    for i,v in pairs(game:GetChildren()) do
-            if v.ClassName == "Players" then
-                return v.Name
+            for i,v in pairs(game:GetChildren()) do
+                if v.ClassName == "Players" then
+                    return v.Name
+                end
             end
         end
     end
 end 
+
 local players = E()
 local plr = game[players].LocalPlayer
     
-    while  wait(1) do
-        coroutine.resume(coroutine.create(function()
-            for _,v in pairs(game[players]:GetPlayers()) do
-                if v.Name ~= plr.Name and v.Character then
+while task.wait() do
+    coroutine.resume(coroutine.create(function()
+        for _,v in pairs(game[players]:GetPlayers()) do
+            if v.Name ~= plr.Name and v.Character then
                     v.Character.Head.CanCollide = false
                     v.Character.Head.Material = "Plastic"
                     v.Character.Head.Transparency = 0.4
@@ -107,7 +110,7 @@ local plr = game[players].LocalPlayer
             end
         end))
     end
-end 
+end
 
 --// Game ID
 if game.PlaceId == 4779613061 then 
