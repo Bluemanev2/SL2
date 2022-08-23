@@ -137,7 +137,7 @@ end
 
 --// Farm Tab
 BTab:AddToggle({
-Name = "INFINITE STAMINA",
+Name = "INFINITE SKITTLES",
 Default = false,
 Callback = function(Value)
 getgenv().settings.C = Value
@@ -147,7 +147,7 @@ end
 
 --// Farm Tab
 BTab:AddToggle({
-Name = "INFINITE SKITTLES",
+Name = "INFINITE STAMINA",
 Default = false,
 Callback = function(Value)
 getgenv().settings.D = Value
