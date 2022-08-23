@@ -83,9 +83,8 @@ end
 
 --// Function E
 function E()
-function getplrsname()
-    while task.wait() do 
-        if not getgenv().settings.E then break end 
+    if getgenv().settings.E == true then 
+        function getplrsname()
             for i,v in pairs(game:GetChildren()) do
                 if v.ClassName == "Players" then
                     return v.Name
@@ -110,8 +109,7 @@ while task.wait() do
             end
         end))
     end
-end
-
+   
 --// Game ID
 if game.PlaceId == 4779613061 then 
         
