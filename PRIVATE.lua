@@ -85,7 +85,7 @@ end
 function E()
 function getplrsname()
     while task.wait() do 
-        if getgenv().settings.E == true then 
+        if not getgenv().settings.E then break end 
             for i,v in pairs(game:GetChildren()) do
                 if v.ClassName == "Players" then
                     return v.Name
