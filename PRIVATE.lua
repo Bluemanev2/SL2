@@ -83,8 +83,8 @@ end
 
 --// Function E
 function E()
-    if getgenv().settings.E == true then 
         function getplrsname()
+            if getgenv().settings.E == true then 
             for i,v in pairs(game:GetChildren()) do
                 if v.ClassName == "Players" then
                     return v.Name
