@@ -134,7 +134,7 @@ PremiumOnly = false
     
 ---// Window Tab 
 local CTab = Window:MakeTab({
-Name = "AIMING,
+Name = "AIMING",
 Icon = "rbxassetid://4483345998",
 PremiumOnly = false
 })
