@@ -1,36 +1,34 @@
- --// Settings 
- getgenv().settings = {
+--// Settings 
+getgenv().settings = {
 A = false, 
 B = false,
 C = false, 
-D = false 
+D = false,
+E = false 
 }
-    
+        
 --// Services 
-local Players = game:GetService("Players")
+ local Players = game:GetService("Players")
 local Player = game:GetService("Players").LocalPlayer
 local workspace = game:GetService("Workspace")
-
+    
 --// Variables
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character
-local Decal
-local Value
-local Index
 local clickdetector
-
+    
 --// Function A
 function A()
 local Character = LocalPlayer.Character
 while getgenv().settings.A == true do  
-for index, value in pairs(workspace.SpillSystem:GetChildren()) do
-    if value.Name ~= "Script" and value:IsA("Part") and value:FindFirstChild("Decal") then 
-        Decal = value:FindFirstChild("Decal")
-            if Decal.Transparency <= 0 then
+for i, v in pairs(workspace.SpillSystem:GetChildren()) do
+    if v.Name ~= "Script" and v:IsA("Part") and v:FindFirstChild("Decal") then 
+         D = v:FindFirstChild("Decal")
+            if D.Transparency <= 0 then
                 local Humanoid = Character:WaitForChild("Humanoid")
                 clickdetector = value:FindFirstChild("ClickDetector")
                 Humanoid.WalkSpeed = 10
-                Humanoid:MoveTo(value.Position)
+                Humanoid:MoveTo(v.Position)
                 Humanoid.MoveToFinished:wait()
                 fireclickdetector(clickdetector, 10)
             task.wait()
@@ -38,21 +36,21 @@ for index, value in pairs(workspace.SpillSystem:GetChildren()) do
     end
 end
 Decal:GetPropertyChangedSignal("Transparency"):Connect(function()
-    if Decal.Transparency <= 0 then
+    if D.Transparency <= 0 then
         local Humanoid = Character:FindFirstChildWhichIsA("Humanoid")
                 Humanoid.WalkSpeed = 10
-                Humanoid:MoveTo(Decal.Position)
+                Humanoid:MoveTo(D.Position)
                 Humanoid.MoveToFinished:wait()
                 fireclickdetector(clickdetector, 10)
             end
         end)  
     end  
 end
-
+    
 --// Function B
 function B()
     game:GetService("RunService").Stepped:Connect(function()
-        if getgenv().settings.B == true then
+         if getgenv().settings.B == true then
             for index,value in pairs(Player.Character:GetDescendants()) do
                 if value:IsA("BasePart") and value.CanCollide == true then
                     value.CanCollide = false 
@@ -61,7 +59,7 @@ function B()
         end
     end)
 end
-    
+        
 --// Function C
 function C()
 pcall(function()
@@ -73,8 +71,8 @@ pcall(function()
         end
     end) 
 end 
-
---// function D 
+    
+--// Function D
 function D()
     if getgenv().settings.D == true then 
             game:GetService"RunService".RenderStepped:Connect(function()
@@ -83,26 +81,60 @@ function D()
     end
 end
 
+--// Function E
+function E()
+    while task.wait() do 
+        if getgenv().settings.E == true then 
+    for i,v in pairs(game:GetChildren()) do
+            if v.ClassName == "Players" then
+                return v.Name
+            end
+        end
+    end
+end 
+local players = E()
+local plr = game[players].LocalPlayer
+    
+    while  wait(1) do
+        coroutine.resume(coroutine.create(function()
+            for _,v in pairs(game[players]:GetPlayers()) do
+                if v.Name ~= plr.Name and v.Character then
+                    v.Character.Head.CanCollide = false
+                    v.Character.Head.Material = "Plastic"
+                    v.Character.Head.Transparency = 0.4
+                    v.Character.Head.Size = Vector3.new(4.1,4.1,4.1)
+                end
+            end
+        end))
+    end
+end 
+
 --// Game ID
 if game.PlaceId == 4779613061 then 
-    
+        
 --// UI Library 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
+    
 --// UI Window 
 local Window = OrionLib:MakeWindow({Name = "PRIVATE SL2 HUB", HidePremium = true, IntroEnabled = false,IntroText = "SL2 HUB", SaveConfig = true, ConfigFolder = "OrionTest"})
-
-
+    
 ---// Window Tab 
 local ATab = Window:MakeTab({
 Name = "AUTO FARM",
 Icon = "rbxassetid://4483345998",
 PremiumOnly = false
-})
-
+ })
+    
 ---// Window Tab 
 local BTab = Window:MakeTab({
 Name = "MISC",
+Icon = "rbxassetid://4483345998",
+PremiumOnly = false
+})
+    
+---// Window Tab 
+local CTab = Window:MakeTab({
+Name = "AIMING,
 Icon = "rbxassetid://4483345998",
 PremiumOnly = false
 })
@@ -110,12 +142,12 @@ PremiumOnly = false
 --// Important Notifcation 
 OrionLib:MakeNotification({
 Name = "IN BETA",
-Content = "CK^^",
+Content = "NOTIFY ASAP FOR BUGS!",
 Image = "rbxassetid://4483345998",
 Time = 5
 })
-
---// Farm Tab
+    
+--// FARM Tab
 ATab:AddToggle({
 Name = "AUTO FARM",
 Default = false,
@@ -124,8 +156,8 @@ getgenv().settings.A = Value
 A()
 end    
 })
-
---// Farm Tab
+    
+--// FARM Tab
 ATab:AddToggle({
 Name = "NO CLIP",
 Default = false,
@@ -134,8 +166,8 @@ getgenv().settings.B = Value
 B()
 end    
 })
-
---// Farm Tab
+    
+--// MISC Tab
 BTab:AddToggle({
 Name = "INFINITE SKITTLES",
 Default = false,
@@ -144,14 +176,24 @@ getgenv().settings.C = Value
 C()
 end    
 })
-
---// Farm Tab
+    
+--// MISC Tab
 BTab:AddToggle({
 Name = "INFINITE STAMINA",
 Default = false,
 Callback = function(Value)
 getgenv().settings.D = Value
 D()
+end    
+})
+    
+--// AIMING Tab
+CTab:AddToggle({
+Name = "HITBOX EXPANDER",
+Default = false,
+Callback = function(Value)
+getgenv().settings.E = Value
+E()
 end    
 })
 
