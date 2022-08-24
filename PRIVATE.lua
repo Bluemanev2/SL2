@@ -3,8 +3,7 @@ getgenv().settings = {
 A = false, 
 B = false,
 C = false, 
-D = false,
-E = false 
+D = false
 }
         
 --// Services 
@@ -104,12 +103,6 @@ Icon = "rbxassetid://4483345998",
 PremiumOnly = false
 })
     
----// Window Tab 
-local CTab = Window:MakeTab({
-Name = "AIMING",
-Icon = "rbxassetid://4483345998",
-PremiumOnly = false
-})
 
 --// Important Notifcation 
 OrionLib:MakeNotification({
